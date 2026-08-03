@@ -1,0 +1,151 @@
+/* =============================================================
+   NoA Connect — Design Tokens (2026)
+   Ny identitet, gjelder fra juli 2026.
+   Bruk disse CSS-variablene i alle HTML-leveranser, slides
+   og komponenter for å sikre konsistent visuell identitet.
+   ============================================================= */
+
+:root {
+
+  /* --- Farger: Primærpalett --- */
+  --color-lime:          #E4FB00;  /* Primær aksent — logo, highlights, key numbers */
+  --color-lime-hover:     #C9DD00;  /* Hover-tilstand for lime */
+  --color-sage:          #6C7962;  /* Sekundær / dempet aksent */
+  --color-dark-green:    #243419;  /* Ink / mørk bakgrunn */
+  --color-peach:         #FCD9A3;  /* Varm aksent */
+  /* Kremfargen som PRIMITIV. --color-bg-primary er krem i lyst tema, men snur
+     til mørkegrønn i mørkt — bruk denne når du mener selve fargen krem, ikke
+     rollen «sidebakgrunn». */
+  --color-cream:         #FDFEEA;
+
+  /* --- Farger: Bakgrunner --- */
+  --color-bg-primary:    #FDFEEA;  /* Slide-bakgrunn / hoved-bakgrunn (krem) */
+  --color-bg-secondary:  #EBEAEA;  /* Sekundær bakgrunn, lys grå */
+  --color-bg-card:       #FFFFFF;  /* Kortbakgrunn / panel */
+  --color-bg-dark:       #243419;  /* Footer / mørk slide-bakgrunn */
+  --color-bg-deep:       #243419;  /* Nedsenket flate: footer, kodeblokk, plotflate */
+  --color-bg-quote:      #FFFFFF;  /* Blokkquote-flate */
+
+  /* --- Farger: Knapper / pills --- */
+  --color-btn-primary-bg:       #E4FB00;
+  --color-btn-primary-text:     #243419;
+  --color-btn-primary-border:   #E4FB00;
+  /* Hvit sekundær forsvinner mot krem bakgrunn i lyst tema,
+     derfor ramme her. I mørkt tema er den ren hvit uten ramme. */
+  --color-btn-secondary-bg:     #FFFFFF;
+  --color-btn-secondary-text:   #243419;
+  --color-btn-secondary-border: #EBEAEA;
+
+  /* --- Farger: Tekst --- */
+  --color-heading:         #243419;  /* Overskrifter. Lime i mørkt tema */
+  --color-text-primary:    #000000;
+  --color-text-secondary:  #282828;
+  --color-text-muted:      #545050;
+  --color-text-on-dark:    #FDFEEA;
+
+  /* --- Farger: Ramme / skillelinje --- */
+  --color-border:          #EBEAEA;
+  --color-border-lime:     #E4FB00;
+  --color-border-sage:     #6C7962;
+
+  /* --- Farger: Lenker --- */
+  --color-link:            #467886;
+  --color-link-visited:    #96607D;
+
+  /* --- Farger: Positiv / negativ endring ---
+     #c03535 klarte bare 4,1:1 mot en peach radbakgrunn. Denne gjør 5,2:1
+     der og 6,9:1 på hvitt. */
+  --color-negative:        #A82A2A;
+  --color-positive:        #243419;
+
+  /* --- Tabellrader ---
+     --row-marker er en 3px kant på radens første celle, ikke et fyll.
+     Grunn: i mørkt tema kan ingen fyllfarge både være synlig mot kortet
+     og la dempet celletekst klare AA. Kanten løser markeringen alene.
+     Marker-fargen er alltid den sterkeste fargen mot radens EGET fyll —
+     derfor mørkegrønn her og lime i mørkt tema, ikke én felles farge. */
+  --row-alt:               #fbfaf8;  /* Zebra-stripe */
+  --row-kunde:             #FCD9A3;  /* Klientrad, peach */
+  --row-cross:             #6C7962;  /* Kryssvalgt rad, sage */
+  --row-marker:            #243419;  /* 9,9:1 mot peach-fyllet */
+
+  /* --- Aktiv navigasjon --- */
+  --nav-active-bg:         #FCD9A3;  /* Peach. Lime i mørkt tema */
+
+  /* --- Uthevede flater (valgt element, sammenligning) ---
+     Peach og sage er LYSE fyllfarger. Se dark/DARK-THEME.md for hvorfor de
+     ikke kan gjenbrukes som fyll i mørkt tema. */
+  --accent-soft-bg:        #FCD9A3;  /* Primært valg, peach */
+  --accent-soft-text:      #243419;  /* 9,9:1 */
+  --accent-alt-bg:         #6C7962;  /* Sekundært valg, sage */
+  --accent-alt-text:       #FDFEEA;  /* 4,5:1. Mørkegrønn her gir 2,9:1 og stryker */
+  --accent-alt-border:     #243419;
+
+  /* --- Bevisst mørkt panel på lys side ---
+     Et kontrastvirkemiddel, ikke en vanlig flate. Har egne tokens fordi
+     retningen holdes i begge temaer: panelet er alltid dypere enn siden. */
+  --panel-deep:            #243419;
+  --panel-deep-border:     #1A2612;
+  --panel-deep-text:       #FDFEEA;
+  --panel-deep-muted:      rgba(253, 254, 234, 0.78);
+  --panel-deep-rule:       rgba(253, 254, 234, 0.14);
+
+  /* --- Typografi --- */
+  --font-display: 'Aptos Display', 'Georgia', serif;  /* Overskrifter, wordmark */
+  --font-sans:    'Aptos', system-ui, sans-serif;      /* Brødtekst, UI-elementer */
+
+  --font-weight-regular: 400;
+  --font-weight-bold:    700;
+
+  --line-height-heading: 1.2;
+  --line-height-body:    1.65;
+
+  --font-size-xs:   12px;
+  --font-size-sm:   14px;
+  --font-size-base: 16px;
+  --font-size-lg:   18px;
+  --font-size-xl:   20px;
+  --font-size-2xl:  24px;
+  --font-size-3xl:  30px;
+
+  /* --- Form og struktur --- */
+  --border-radius-sm:   6px;
+  --border-radius-md:   12px;
+  --border-radius-pill: 20px;
+
+  /* --- Chart-serier --- */
+  --chart-1: #E4FB00;  /* Lime */
+  --chart-2: #243419;  /* Mørkegrønn */
+  --chart-3: #6C7962;  /* Sage */
+  --chart-4: #FCD9A3;  /* Fersken */
+
+  /* --- Skygger (subtile) --- */
+  --shadow-card: 0 1px 3px rgba(36, 52, 25, 0.06);
+  --shadow-sm:   0 1px 2px rgba(36, 52, 25, 0.04);
+
+  color-scheme: light;
+}
+
+/* Mørkt tema er VALGFRITT og ligger i dark/dark-tokens.css.
+   Last det arket etter dette for å aktivere. */
+
+/* =============================================================
+   Chart-farger (rekkefølge)
+
+   Serie 1:  var(--color-lime)        #E4FB00  Lime
+   Serie 2:  var(--color-dark-green)  #243419  Mørkegrønn
+   Serie 3:  var(--color-sage)        #6C7962  Sage
+   Serie 4:  var(--color-peach)       #FCD9A3  Fersken
+
+   Bruksmønster
+
+   Overskrift:        font-family: var(--font-display); font-weight: 700
+   Brødtekst / UI:    font-family: var(--font-sans)
+   Primærknapp:       background: var(--color-lime); color: var(--color-dark-green)
+   CTA / footer:      background: var(--color-dark-green); color: var(--color-text-on-dark)
+   Kortramme lime:    border: 1px solid var(--color-border-lime)
+   Kortramme sage:    border: 1px solid var(--color-border-sage)
+   Blokkquote:        border-left: 3px solid var(--color-lime)
+   Logo:              assets/logo-wordmark.svg (wordmark, mørkegrønn).
+                      accent-arrow.svg er et dekorikon, IKKE logoen.
+   ============================================================= */

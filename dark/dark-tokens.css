@@ -1,0 +1,197 @@
+/* =============================================================
+   NoA Connect — Mørkt tema (2026), VALGFRITT
+   Lyst tema er standard. Dette arket overstyrer bare det som
+   må snus: flater, tekst, ramme, lenker. Merkevare-primitivene
+   (lime, fersken) er uendret.
+
+   Last ETTER design-tokens.css:
+
+     <link rel="stylesheet" href="../design-tokens.css">
+     <link rel="stylesheet" href="dark/dark-tokens.css">
+
+   Aktivering:
+     <html data-theme="dark">   eksplisitt mørkt
+     <html data-theme="light">  tvinger lyst, slår av auto
+     ingen attributt            lyst, men følger OS via auto-blokken
+   ============================================================= */
+
+/* --- Eksplisitt mørkt -------------------------------------- */
+:root[data-theme="dark"] {
+
+  /* Bakgrunner — tre trinn, mørkegrønn som base */
+  --color-bg-primary:    #243419;  /* Merkevaregrønn. Side-/slide-bakgrunn */
+  --color-bg-secondary:  #2E4020;  /* Hevet ett trinn */
+  --color-bg-card:       #2E4020;  /* Kort / panel, hevet over bakgrunn */
+  --color-bg-deep:       #1A2612;  /* Nedsenket: footer, kodeblokk, plotflate */
+  --color-bg-dark:       #1A2612;  /* Alias for bakoverkompatibilitet */
+  --color-bg-quote:      #1A2612;  /* Blokkquote-flate */
+
+  /* Knappeflater — begge fylte, pill-form, ingen ramme. Se designmal */
+  --color-btn-primary-bg:       #E4FB00;  /* Lime */
+  --color-btn-primary-text:     #243419;
+  --color-btn-primary-border:   transparent;
+  --color-btn-secondary-bg:     #FFFFFF;  /* Hvit fylt */
+  --color-btn-secondary-text:   #243419;
+  --color-btn-secondary-border: transparent;
+
+  /* Tekst */
+  --color-heading:         #E4FB00;  /* Lime overskrifter. 13,8:1 mot bg-primary */
+  --color-text-primary:    #FFFFFF;  /* Brødtekst */
+  --color-text-secondary:  #E6E9DF;
+  --color-text-muted:      #A9B69C;  /* 5,4:1 mot bg-primary */
+  --color-text-on-dark:    #FFFFFF;
+
+  /* Ramme — erstatter skygge som dybdesignal */
+  --color-border:          #3F5430;
+  --color-border-lime:     #E4FB00;
+  --color-border-sage:     #8B9A80;
+
+  /* Lenker — lysere, #467886 faller igjennom på mørkt */
+  --color-link:            #8FC4D1;
+  --color-link-visited:    #D3A3BB;
+
+  /* Aksenter */
+  --color-lime:            #E4FB00;  /* Uendret */
+  --color-lime-hover:      #EFFF4D;  /* Hover går LYSERE på mørkt */
+  --color-sage:            #8B9A80;  /* Løftet for lesbarhet */
+  --color-peach:           #FCD9A3;  /* Uendret */
+
+  /* Positiv / negativ endring. Lysere enn i lyst tema, og lys nok til å
+     klare AA også oppå klientradens fyll: 6,6:1 på siden, 5,6:1 på kort,
+     5,1:1 på --row-kunde. */
+  --color-negative:        #FF9C9C;
+  --color-positive:        #E4FB00;
+
+  /* Tabellrader. Fyllet LØFTER bare — --row-marker gjør markeringen.
+     Alt som er lyst nok til å skille seg tydelig fra --color-bg-card
+     skyver dempet celletekst under AA, så fyllet kan ikke bære jobben. */
+  --row-alt:               #283A1D;  /* Zebra, ett hår over kortet */
+  --row-kunde:             #33471E;  /* Hvit tekst 10,2:1, dempet 4,8:1 */
+  --row-cross:             #35472B;  /* Hvit tekst 10,1:1 */
+  --row-marker:            #E4FB00;  /* Lime, 8,8:1 mot radfyllet */
+
+  /* Aktiv navigasjon: lime, ikke peach. Lime er designmalens markør for
+     aktivt steg, og peach ved siden av en lime bryter ser ut som et annet
+     system. */
+  --nav-active-bg:         #E4FB00;  /* 11,5:1 under mørkegrønn tekst */
+
+  /* Uthevede flater. Peach og sage er lyse fyllfarger og leses som
+     levninger fra lyst tema her — løft grønnfargen i stedet og la lime
+     eller sage være RAMME. Å fylle hele paneler med lime blir altfor
+     høylytt; lime skal være en strek, ikke en flate. */
+  --accent-soft-bg:        #33471E;  /* Primært valg. Hvit tekst 10,2:1 */
+  --accent-soft-text:      #FFFFFF;
+  --accent-alt-bg:         #35472B;  /* Sekundært valg. Hvit tekst 10,1:1 */
+  --accent-alt-text:       #FFFFFF;
+  --accent-alt-border:     #8B9A80;  /* Sage som ramme */
+
+  /* Bevisst mørkt panel. Siden er allerede mørk, så panelet går NED til
+     det nedsenkede trinnet og lener seg på rammen. Retningen holdes:
+     panelet er dypere enn siden i begge temaer. */
+  --panel-deep:            #1A2612;
+  --panel-deep-border:     #3F5430;
+  --panel-deep-text:       #FFFFFF;
+  --panel-deep-muted:      rgba(255, 255, 255, 0.78);
+  --panel-deep-rule:       rgba(255, 255, 255, 0.14);
+
+  /* Chart-serier — serie 2 byttet fra mørkegrønn til krem,
+     #243419 ville vært usynlig mot bakgrunnen */
+  --chart-1: #E4FB00;
+  --chart-2: #FDFEEA;
+  --chart-3: #8B9A80;
+  --chart-4: #FCD9A3;
+
+  /* Skygger leses knapt på mørkt. Bruk ramme. */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.40);
+  --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.30);
+
+  color-scheme: dark;
+}
+
+/* --- Auto: følg OS, men la data-theme="light" vinne -------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg-primary:    #243419;
+    --color-bg-secondary:  #2E4020;
+    --color-bg-card:       #2E4020;
+    --color-bg-deep:       #1A2612;
+    --color-bg-dark:       #1A2612;
+    --color-bg-quote:      #1A2612;
+
+    --color-btn-primary-bg:       #E4FB00;
+    --color-btn-primary-text:     #243419;
+    --color-btn-primary-border:   transparent;
+    --color-btn-secondary-bg:     #FFFFFF;
+    --color-btn-secondary-text:   #243419;
+    --color-btn-secondary-border: transparent;
+
+    --color-heading:         #E4FB00;
+    --color-text-primary:    #FFFFFF;
+    --color-text-secondary:  #E6E9DF;
+    --color-text-muted:      #A9B69C;
+    --color-text-on-dark:    #FFFFFF;
+
+    --color-border:          #3F5430;
+    --color-border-lime:     #E4FB00;
+    --color-border-sage:     #8B9A80;
+
+    --color-link:            #8FC4D1;
+    --color-link-visited:    #D3A3BB;
+
+    --color-lime:            #E4FB00;
+    --color-lime-hover:      #EFFF4D;
+    --color-sage:            #8B9A80;
+    --color-peach:           #FCD9A3;
+
+    --color-negative:        #FF9C9C;
+    --color-positive:        #E4FB00;
+
+    --row-alt:               #283A1D;
+    --row-kunde:             #33471E;
+    --row-cross:             #35472B;
+    --row-marker:            #E4FB00;
+
+    --nav-active-bg:         #E4FB00;
+
+    --accent-soft-bg:        #33471E;
+    --accent-soft-text:      #FFFFFF;
+    --accent-alt-bg:         #35472B;
+    --accent-alt-text:       #FFFFFF;
+    --accent-alt-border:     #8B9A80;
+
+    --panel-deep:            #1A2612;
+    --panel-deep-border:     #3F5430;
+    --panel-deep-text:       #FFFFFF;
+    --panel-deep-muted:      rgba(255, 255, 255, 0.78);
+    --panel-deep-rule:       rgba(255, 255, 255, 0.14);
+
+    --chart-1: #E4FB00;
+    --chart-2: #FDFEEA;
+    --chart-3: #8B9A80;
+    --chart-4: #FCD9A3;
+
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.40);
+    --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.30);
+
+    color-scheme: dark;
+  }
+}
+
+/* =============================================================
+   Bruksmønster — mørkt tema
+
+   Overskrift:        color: var(--color-heading)      lime
+   Brødtekst:         color: var(--color-text-primary) hvit
+   Kort:              background: var(--color-bg-card); border: 1px solid var(--color-border)
+   Primærknapp:       background: var(--color-lime); color: #243419; border-radius: var(--border-radius-pill)
+   Sekundærknapp:     background: #FFFFFF; color: #243419; border-radius: var(--border-radius-pill)
+                      (hvit fylt, ikke ramme — se designmal)
+   Metrikkverdi:      color: var(--color-heading)      lime
+   Blokkquote:        background: var(--color-bg-deep); border-left: 3px solid var(--color-lime)
+   Footer:            background: var(--color-bg-deep)
+
+   Logo: bruk assets/logo-wordmark-cream.svg. Standardvarianten er
+   fylt #243419, altså bakgrunnen her, og forsvinner.
+   Ripple-videoene er LYSE og skal
+   ikke brukes i mørkt tema — se DARK-THEME.md.
+   ============================================================= */

@@ -1,0 +1,12 @@
+{
+  "name": "noa-connect-brand-guidelines",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NoA Connect design system 2026 — tokens, documentation and a browsable site",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

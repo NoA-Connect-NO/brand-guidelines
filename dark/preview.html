@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="no" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NoA Connect 2026 — mørkt tema, forhåndsvisning</title>
+<link rel="stylesheet" href="../design-tokens.css">
+<link rel="stylesheet" href="dark-tokens.css">
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 2.5rem 2rem 4rem;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-body);
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    transition: background .18s ease, color .18s ease;
+  }
+
+  .wrap { max-width: 900px; margin: 0 auto; }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-heading);
+    color: var(--color-heading);
+    margin: 0;
+  }
+  h1 { font-size: var(--font-size-3xl); }
+  h2 { font-size: var(--font-size-2xl); margin: 2.5rem 0 1rem; }
+  h3 { font-size: var(--font-size-xl); margin: 0 0 .5rem; }
+
+  p { margin: 0 0 1rem; }
+  a { color: var(--color-link); }
+  a:visited { color: var(--color-link-visited); }
+
+  .lead { font-size: var(--font-size-lg); color: var(--color-text-secondary); }
+  .meta { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+
+  .label {
+    font-size: 11px;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: .5rem;
+    margin: 2.5rem 0 1rem;
+  }
+
+  /* --- toggle ------------------------------------------------ */
+  .bar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+    padding-bottom: 1.5rem; margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .toggle {
+    font-family: var(--font-sans); font-size: var(--font-size-xs); font-weight: 500;
+    letter-spacing: .06em; text-transform: uppercase;
+    background: var(--color-btn-secondary-bg);
+    color: var(--color-btn-secondary-text);
+    border: 1px solid var(--color-btn-secondary-border);
+    border-radius: var(--border-radius-pill);
+    padding: 7px 16px; cursor: pointer;
+  }
+
+  /* --- components ------------------------------------------- */
+  /* Knapper og pills — begge fylte, pill-form. Se designmal */
+  .btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-xs); font-weight: 500;
+    letter-spacing: .06em; text-transform: uppercase;
+    border-radius: var(--border-radius-pill);
+    padding: 6px 16px;
+    text-decoration: none; cursor: pointer;
+    background: var(--color-btn-primary-bg);
+    color: var(--color-btn-primary-text);
+    border: 1px solid var(--color-btn-primary-border);
+  }
+  .btn:hover { background: var(--color-lime-hover); border-color: var(--color-lime-hover); }
+  .btn-secondary {
+    background: var(--color-btn-secondary-bg);
+    color: var(--color-btn-secondary-text);
+    border: 1px solid var(--color-btn-secondary-border);
+  }
+  .btn-secondary:hover { background: var(--color-btn-secondary-bg); border-color: var(--color-btn-secondary-border); }
+  .flow { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+  .arrow {
+    flex: 0 0 auto; width: 22px; height: 1px;
+    background: var(--color-text-muted);
+  }
+  .dot-lime {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--color-lime); flex: 0 0 auto;
+  }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: 1rem 1.25rem;
+  }
+  .card.lime { border-color: var(--color-border-lime); }
+  .card.sage { border-color: var(--color-border-sage); }
+  .card h3 { font-size: var(--font-size-lg); }
+  .card p { margin: 0; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .metric {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-sm);
+    padding: 1rem;
+  }
+  .metric .lbl {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: .07em;
+  }
+  .metric .val {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-heading);
+  }
+
+  blockquote {
+    margin: 0;
+    background: var(--color-bg-quote);
+    border-left: 3px solid var(--color-lime);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    padding: .75rem 1rem;
+  }
+  blockquote p { margin: 0; }
+
+  table.data { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+  table.data th {
+    text-align: left; font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: .5rem .6rem; border-bottom: 1px solid var(--color-border);
+  }
+  table.data td {
+    padding: .5rem .6rem;
+    border-bottom: 1px dashed var(--color-border);
+  }
+  table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* --- chart ------------------------------------------------ */
+  .chart {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: 1.25rem;
+  }
+  .bars { display: flex; align-items: flex-end; gap: 16px; height: 150px; }
+  .bar { flex: 1; border-radius: 4px 4px 0 0; }
+  .b1 { background: var(--chart-1); }
+  .b2 { background: var(--chart-2); }
+  .b3 { background: var(--chart-3); }
+  .b4 { background: var(--chart-4); }
+  .legend { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: .9rem; font-size: var(--font-size-xs); color: var(--color-text-muted); }
+  .legend span { display: flex; align-items: center; gap: .4rem; }
+  .key { width: 12px; height: 12px; border-radius: 3px; }
+
+  footer {
+    margin-top: 2.5rem;
+    background: var(--color-bg-deep);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-on-dark);
+  }
+  footer strong { color: var(--color-lime); }
+
+  .logo { width: 26px; height: 26px; fill: var(--color-lime); }
+  .brandline { display: flex; align-items: center; gap: .6rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <div class="brandline">
+      <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 20H2z"/></svg>
+      <strong>Noa connect</strong>
+      <span class="meta">designsystem 2026</span>
+    </div>
+    <button class="toggle" id="t">Bytt tema</button>
+  </div>
+
+  <h1>Mørkt tema</h1>
+  <p class="lead">Merkevaregrønn bakgrunn, lime overskrifter, hvit brødtekst. Valgfritt tillegg til det lyse standardtemaet.</p>
+  <p class="meta">Trykk «Bytt tema» for å se at samme markup fungerer i begge temaene. Ingen komponent-CSS endres — bare tokens.</p>
+
+  <div class="label">Typografi</div>
+  <h2>Overskrift i lime</h2>
+  <p>Brødtekst i hvitt, linjeavstand 1,65. En <a href="#a">lenke ser slik ut</a> og en besøkt lenke får dempet rosa. Visuell vekt kommer fra typografi og struktur, ikke fra farger alene.</p>
+  <p class="meta">Dempet metatekst for etiketter, kilder og footer.</p>
+
+  <div class="label">Knapper og pills</div>
+  <p style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center">
+    <a href="#a" class="btn">Primær</a>
+    <a href="#a" class="btn btn-secondary">Sekundær</a>
+    <a href="#a" class="btn btn-secondary"><i class="dot-lime"></i>Med lime punkt</a>
+  </p>
+  <p class="meta">Fra designmalen: begge fylte, pill-form. Lime pill = hovedsteg eller aktivt punkt. Hvit pill = sekundært eller påfølgende steg, eventuelt med lime punkt som markør. Rammevariant brukes ikke.</p>
+
+  <div class="label">Prosessteg med pills</div>
+  <div class="flow">
+    <span class="btn">Direction</span>
+    <i class="arrow"></i>
+    <span class="btn btn-secondary"><i class="dot-lime"></i>Collaboration</span>
+    <i class="arrow"></i>
+    <span class="btn btn-secondary"><i class="dot-lime"></i>Activation</span>
+    <i class="arrow"></i>
+    <span class="btn btn-secondary"><i class="dot-lime"></i>Optimization</span>
+    <i class="arrow"></i>
+    <span class="btn btn-secondary"><i class="dot-lime"></i>Performance</span>
+  </div>
+  <p class="meta">Samme pill-komponent som knappene. Lime markerer utgangspunktet, hvite pills de påfølgende stegene.</p>
+
+  <div class="label">Kort</div>
+  <div class="cards">
+    <div class="card"><h3>Standard</h3><p>Hevet flate med ramme. Ramme, ikke skygge, gir dybde i mørkt tema.</p></div>
+    <div class="card lime"><h3>Lime ramme</h3><p>Brukes til å løfte én enkelt innsikt eller anbefaling.</p></div>
+    <div class="card sage"><h3>Sage ramme</h3><p>Dempet variant til støttende innhold og forbehold.</p></div>
+  </div>
+
+  <div class="label">Metrikkort</div>
+  <div class="metrics">
+    <div class="metric"><div class="lbl">Kjennskap</div><div class="val">62 %</div></div>
+    <div class="metric"><div class="lbl">Preferanse</div><div class="val">18 %</div></div>
+    <div class="metric"><div class="lbl">Markedsandel</div><div class="val">7,4 %</div></div>
+    <div class="metric"><div class="lbl">Endring</div><div class="val">+3 pp</div></div>
+  </div>
+
+  <div class="label">Blokkquote</div>
+  <blockquote><p>Sitat eller nøkkelfunn med lime venstrekant, på nedsenket flate.</p></blockquote>
+
+  <div class="label">Tabell</div>
+  <table class="data">
+    <thead><tr><th>Merkevare</th><th class="num">Kjennskap</th><th class="num">Preferanse</th><th class="num">Endring</th></tr></thead>
+    <tbody>
+      <tr><td>Merkevare A</td><td class="num">62 %</td><td class="num">18 %</td><td class="num">+3 pp</td></tr>
+      <tr><td>Merkevare B</td><td class="num">54 %</td><td class="num">15 %</td><td class="num">−1 pp</td></tr>
+      <tr><td>Merkevare C</td><td class="num">41 %</td><td class="num">9 %</td><td class="num">+2 pp</td></tr>
+      <tr><td>Merkevare D</td><td class="num">28 %</td><td class="num">6 %</td><td class="num">0 pp</td></tr>
+    </tbody>
+  </table>
+
+  <div class="label">Chart-serier</div>
+  <div class="chart">
+    <div class="bars">
+      <div class="bar b1" style="height:100%"></div>
+      <div class="bar b2" style="height:74%"></div>
+      <div class="bar b3" style="height:52%"></div>
+      <div class="bar b4" style="height:33%"></div>
+    </div>
+    <div class="legend">
+      <span><i class="key b1"></i>Serie 1</span>
+      <span><i class="key b2"></i>Serie 2</span>
+      <span><i class="key b3"></i>Serie 3</span>
+      <span><i class="key b4"></i>Serie 4</span>
+    </div>
+  </div>
+  <p class="meta">Serie 2 er krem i mørkt tema og mørkegrønn i lyst. Mørkegrønn ville vært usynlig mot mørk bakgrunn. Bytt tema og se forskjellen.</p>
+
+  <footer>
+    <strong>Ripple-videoene skal ikke brukes i mørkt tema.</strong> De har lys bakgrunn og finnes ikke i mørk versjon. Se <code>DARK-THEME.md</code> for full sjekkliste.
+  </footer>
+
+</div>
+
+<script>
+  const root = document.documentElement
+  document.getElementById('t').addEventListener('click', () => {
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'
+  })
+</script>
+</body>
+</html>

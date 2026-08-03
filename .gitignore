@@ -1,0 +1,5 @@
+.DS_Store
+
+# Kildefiler som er for tunge for git. Ligger på delt disk.
+*.pptx
+*.mp4

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="no" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NoA Connect — Designsystem 2026</title>
+<link rel="icon" href="assets/accent-arrow.svg">
+
+<!-- Sidens egne farger kommer fra de SAMME filene folk skal bruke.
+     Ingen hardkodede hexverdier her, så siden kan ikke vise noe annet
+     enn det retningslinjene faktisk sier. -->
+<link rel="stylesheet" href="design-tokens.css">
+<link rel="stylesheet" href="dark/dark-tokens.css">
+
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:var(--font-sans);
+    font-size:var(--font-size-base);
+    line-height:var(--line-height-body);
+    background:var(--color-bg-primary);
+    color:var(--color-text-primary);
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 1.5rem}
+
+  h1,h2,h3{font-family:var(--font-display);line-height:var(--line-height-heading);color:var(--color-heading);margin:0}
+  h1{font-size:var(--font-size-3xl)}
+  h2{font-size:var(--font-size-2xl);margin:0 0 .4rem}
+  h3{font-size:var(--font-size-lg);margin:0 0 .5rem}
+  p{margin:0 0 1rem}
+  a{color:var(--color-link)}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+
+  .muted{color:var(--color-text-muted)}
+  .lead{font-size:var(--font-size-lg);color:var(--color-text-secondary)}
+
+  /* ---- topp ---- */
+  header{border-bottom:1px solid var(--color-border);background:var(--color-bg-card)}
+  .bar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:1rem 0}
+  .bar img{height:16px;width:auto}
+  .spacer{flex:1}
+  .pill{
+    display:inline-flex;align-items:center;gap:.4rem;
+    font-family:var(--font-sans);font-size:var(--font-size-xs);font-weight:500;
+    letter-spacing:.06em;text-transform:uppercase;
+    border-radius:var(--border-radius-pill);padding:6px 16px;cursor:pointer;text-decoration:none;
+    background:var(--color-btn-primary-bg);color:var(--color-btn-primary-text);
+    border:1px solid var(--color-btn-primary-border);
+  }
+  .pill.sec{
+    background:var(--color-btn-secondary-bg);color:var(--color-btn-secondary-text);
+    border:1px solid var(--color-btn-secondary-border);
+  }
+  .toggle{display:flex;gap:.4rem}
+
+  .hero{padding:2.5rem 0 1.5rem}
+  nav.toc{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0 0}
+  nav.toc a{
+    font-size:var(--font-size-sm);text-decoration:none;
+    color:var(--color-text-secondary);
+    border:1px solid var(--color-border);border-radius:var(--border-radius-pill);
+    padding:4px 12px;
+  }
+
+  section{padding:2.5rem 0;border-top:1px solid var(--color-border)}
+  .label{
+    font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--color-text-muted);margin:0 0 .6rem;
+  }
+
+  /* ---- fargekort ---- */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:1.25rem}
+  .sw{
+    border:1px solid var(--color-border);border-radius:var(--border-radius-md);
+    overflow:hidden;background:var(--color-bg-card);text-align:left;
+    font:inherit;color:inherit;cursor:pointer;padding:0;width:100%;
+  }
+  .sw .chip{display:block;height:74px;border-bottom:1px solid var(--color-border)}
+  .sw .meta{padding:.6rem .75rem}
+  .sw .nm{font-size:13px;font-weight:700}
+  .sw .hx{font-size:12px;color:var(--color-text-muted);font-variant-numeric:tabular-nums}
+  .sw .tk{font-size:11px;color:var(--color-text-muted);margin-top:.2rem;word-break:break-all}
+  .sw:hover{border-color:var(--color-border-lime)}
+
+  /* ---- tabell ---- */
+  table{width:100%;border-collapse:collapse;font-size:var(--font-size-sm);margin-top:1rem}
+  th{
+    text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--color-text-muted);font-weight:700;
+    padding:.5rem .6rem;border-bottom:1px solid var(--color-border);
+  }
+  td{padding:.5rem .6rem;border-bottom:1px dashed var(--color-border);vertical-align:top}
+  .dot{
+    display:inline-block;width:26px;height:16px;border-radius:4px;vertical-align:middle;
+    margin-right:.5rem;border:1px solid var(--color-border);
+  }
+  .scroll{overflow-x:auto}
+
+  /* ---- komponenteksempler ---- */
+  .demo{
+    background:var(--color-bg-card);border:1px solid var(--color-border);
+    border-radius:var(--border-radius-md);padding:1.25rem;margin-top:1rem;
+  }
+  .row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+  .dotlime{width:8px;height:8px;border-radius:50%;background:var(--color-lime);flex:0 0 auto}
+  .metric{background:var(--color-bg-secondary);border-radius:var(--border-radius-sm);padding:1rem;min-width:150px}
+  .metric .l{font-size:var(--font-size-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.07em}
+  .metric .v{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--color-heading)}
+  blockquote{
+    margin:1rem 0 0;background:var(--color-bg-quote);
+    border-left:3px solid var(--color-lime);
+    border-radius:0 var(--border-radius-sm) var(--border-radius-sm) 0;padding:.75rem 1rem;
+  }
+  blockquote p{margin:0}
+
+  /* ---- logo ---- */
+  .logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:1rem}
+  .logobox{border:1px solid var(--color-border);border-radius:var(--border-radius-md);overflow:hidden}
+  .logobox .stage{display:flex;align-items:center;justify-content:center;padding:2rem 1rem;min-height:110px}
+  .logobox .stage img{max-width:80%;height:auto}
+  .logobox .foot{padding:.6rem .75rem;border-top:1px solid var(--color-border);font-size:12px;background:var(--color-bg-card)}
+  .warn{
+    border:1px solid var(--color-border-lime);border-left:4px solid var(--color-lime);
+    border-radius:var(--border-radius-md);padding:1rem 1.25rem;margin-top:1rem;
+    background:var(--color-bg-card);
+  }
+  .warn strong{color:var(--color-heading)}
+
+  /* ---- kopivarsel ---- */
+  #toast{
+    position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,150%);
+    background:var(--color-lime);color:var(--color-btn-primary-text);
+    border-radius:var(--border-radius-pill);padding:8px 20px;
+    font-size:var(--font-size-sm);font-weight:600;
+    transition:transform .2s ease;z-index:99;
+  }
+  #toast.on{transform:translate(-50%,0)}
+
+  footer{border-top:1px solid var(--color-border);padding:2rem 0 3rem;color:var(--color-text-muted);font-size:var(--font-size-sm)}
+
+  @media print{.toggle,nav.toc,#toast{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <img id="logo" src="assets/logo-wordmark.svg" alt="NoA Connect">
+    <span class="muted" style="font-size:var(--font-size-sm)">Designsystem 2026</span>
+    <span class="spacer"></span>
+    <div class="toggle">
+      <button class="pill" id="b-light">Lys</button>
+      <button class="pill sec" id="b-dark">Mørk</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <h1>Designsystem 2026</h1>
+  <p class="lead">Visuell identitet for alt vi leverer: slides, rapporter, diagrammer, tabeller og nettsider.</p>
+  <p class="muted" style="margin:0">Klikk en farge for å kopiere hexkoden. Bytt til mørkt tema øverst for å se hvordan alt endrer seg.</p>
+  <nav class="toc">
+    <a href="#logo-sec">Logo</a>
+    <a href="#farger">Farger</a>
+    <a href="#chart">Diagramfarger</a>
+    <a href="#typografi">Typografi</a>
+    <a href="#komponenter">Komponenter</a>
+    <a href="#kode">For utviklere</a>
+  </nav>
+</div>
+
+<!-- ============ LOGO ============ -->
+<section id="logo-sec"><div class="wrap">
+  <p class="label">Logo</p>
+  <h2>Logoen er wordmarket</h2>
+  <p class="muted">Ingenting annet. Klikk for å laste ned.</p>
+
+  <div class="logos">
+    <div class="logobox">
+      <div class="stage" style="background:var(--color-bg-card)">
+        <img src="assets/logo-wordmark.svg" alt="NoA Connect, mørkegrønn">
+      </div>
+      <div class="foot">
+        <strong>Standard</strong> · mørkegrønn <code>#243419</code><br>
+        <a href="assets/logo-wordmark.svg" download>Last ned SVG</a>
+      </div>
+    </div>
+    <div class="logobox">
+      <div class="stage" style="background:#243419">
+        <img src="assets/logo-wordmark-cream.svg" alt="NoA Connect, krem">
+      </div>
+      <div class="foot">
+        <strong>Krem</strong> · for mørk bakgrunn <code>#FDFEEA</code><br>
+        <a href="assets/logo-wordmark-cream.svg" download>Last ned SVG</a>
+      </div>
+    </div>
+    <div class="logobox">
+      <div class="stage" style="background:var(--color-bg-card)">
+        <img src="assets/accent-arrow.svg" alt="Dekorativ pil" style="max-width:38px">
+      </div>
+      <div class="foot">
+        <strong>Dekorikon</strong> · <span style="color:var(--color-heading);font-weight:700">ikke logoen</span><br>
+        <a href="assets/accent-arrow.svg" download>Last ned SVG</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <strong>Ikke sett pilen ved siden av logoen.</strong>
+    <p style="margin:.4rem 0 0">Pilen er et dekorativt ikon som brukes inne i innholdsbokser. I PowerPoint-malen
+    finnes den i én enkelt layout, og den står aldri sammen med navnet. Bruk den kremfargede
+    logoen på mørkegrønn bakgrunn — standardvarianten har samme farge som bakgrunnen og forsvinner.</p>
+  </div>
+</div></section>
+
+<!-- ============ FARGER ============ -->
+<section id="farger"><div class="wrap">
+  <p class="label">Farger</p>
+  <h2>Palett</h2>
+  <p class="muted">Verdiene under leses direkte fra <code>design-tokens.css</code>, så de kan ikke bli utdaterte.</p>
+  <div class="swatches" id="sw-brand"></div>
+
+  <h3 style="margin-top:2rem">Flater og tekst</h3>
+  <p class="muted" style="margin:0">Disse endrer seg med temaet. Bytt øverst for å se begge.</p>
+  <div class="swatches" id="sw-ui"></div>
+
+  <p style="margin-top:1.25rem"><strong>Bruk aldri</strong> rene primærfarger som ikke står i paletten. Ingen ren blå, ingen ren rød.</p>
+</div></section>
+
+<!-- ============ CHART ============ -->
+<section id="chart"><div class="wrap">
+  <p class="label">Diagramfarger</p>
+  <h2>Fast rekkefølge på seriene</h2>
+  <p class="muted">Serie 2 bytter i mørkt tema, fordi mørkegrønn <em>er</em> bakgrunnen der og ville blitt usynlig.</p>
+  <div class="swatches" id="sw-chart"></div>
+
+  <div class="demo">
+    <div style="display:flex;align-items:flex-end;gap:16px;height:140px">
+      <div style="flex:1;height:100%;border-radius:4px 4px 0 0;background:var(--chart-1)"></div>
+      <div style="flex:1;height:74%;border-radius:4px 4px 0 0;background:var(--chart-2)"></div>
+      <div style="flex:1;height:52%;border-radius:4px 4px 0 0;background:var(--chart-3)"></div>
+      <div style="flex:1;height:33%;border-radius:4px 4px 0 0;background:var(--chart-4)"></div>
+    </div>
+    <p class="muted" style="margin:.9rem 0 0;font-size:var(--font-size-xs)">Rutenett og akselinjer: rammefargen. Aksetekst: dempet tekstfarge.</p>
+  </div>
+</div></section>
+
+<!-- ============ TYPOGRAFI ============ -->
+<section id="typografi"><div class="wrap">
+  <p class="label">Typografi</p>
+  <h2>Aptos Display til overskrifter, Aptos til alt annet</h2>
+
+  <div class="demo">
+    <div style="font-family:var(--font-display);font-size:var(--font-size-3xl);color:var(--color-heading);line-height:1.2">Overskrift i Aptos Display</div>
+    <p style="margin:.75rem 0 0">Brødtekst i Aptos, 16px, linjeavstand 1,65. Etiketter, knapper, tabellceller og metadata bruker samme font — aldri display-fonten.</p>
+    <p class="muted" style="margin:.5rem 0 0;font-size:var(--font-size-sm)">Dempet støttetekst, 14px.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Rolle</th><th>Størrelse</th><th>Brukes til</th></tr></thead>
+      <tbody>
+        <tr><td>H1 / slide-tittel</td><td>30px</td><td>Sidetittel, én per side</td></tr>
+        <tr><td>H2</td><td>24px</td><td>Seksjoner</td></tr>
+        <tr><td>H3</td><td>20px</td><td>Underseksjoner, korttitler</td></tr>
+        <tr><td>Ingress</td><td>18px</td><td>Innledende avsnitt</td></tr>
+        <tr><td>Brødtekst</td><td>16px</td><td>Løpende tekst</td></tr>
+        <tr><td>Støttetekst</td><td>14px</td><td>Metadata, kildehenvisning</td></tr>
+        <tr><td>Etikett</td><td>12px</td><td>Seksjonsetiketter, footer</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="margin-top:1.25rem"><strong>Grunnregel:</strong> visuell vekt skal komme fra typografi og struktur, ikke fra farger alene. Unngå støyende farger, gradienter og dekor uten funksjon.</p>
+</div></section>
+
+<!-- ============ KOMPONENTER ============ -->
+<section id="komponenter"><div class="wrap">
+  <p class="label">Komponenter</p>
+  <h2>Knapper, kort og tall</h2>
+
+  <div class="demo">
+    <h3>Knapper og pills</h3>
+    <p class="muted" style="font-size:var(--font-size-sm)">Begge varianter er fylte, aldri bare ramme. Pill-form, 20px radius.</p>
+    <div class="row">
+      <button class="pill">Primær</button>
+      <button class="pill sec">Sekundær</button>
+      <button class="pill sec"><i class="dotlime"></i>Med lime punkt</button>
+    </div>
+  </div>
+
+  <div class="demo">
+    <h3>Nøkkeltall</h3>
+    <div class="row">
+      <div class="metric"><div class="l">Kjennskap</div><div class="v">62 %</div></div>
+      <div class="metric"><div class="l">Preferanse</div><div class="v">18 %</div></div>
+      <div class="metric"><div class="l">Endring</div><div class="v">+3 pp</div></div>
+    </div>
+  </div>
+
+  <div class="demo">
+    <h3>Sitat</h3>
+    <blockquote><p>Nøkkelfunn eller sitat, med lime venstrekant.</p></blockquote>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Element</th><th>Verdi</th></tr></thead>
+      <tbody>
+        <tr><td>Hjørneradius standard</td><td>6px</td></tr>
+        <tr><td>Hjørneradius kort og panel</td><td>12px</td></tr>
+        <tr><td>Hjørneradius pill og badge</td><td>20px</td></tr>
+        <tr><td>Skillelinje</td><td>1px, rammefarge</td></tr>
+        <tr><td>Standard padding</td><td>16px</td></tr>
+        <tr><td>Seksjonsavstand</td><td>2rem</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<!-- ============ KODE ============ -->
+<section id="kode"><div class="wrap">
+  <p class="label">For utviklere</p>
+  <h2>Tokens</h2>
+  <p>Last inn CSS-variablene og bruk dem i stedet for hexverdier. Da følger alt temaet automatisk.</p>
+
+  <div class="demo">
+<pre style="margin:0;overflow-x:auto"><code>&lt;link rel="stylesheet" href="design-tokens.css"&gt;
+&lt;link rel="stylesheet" href="dark/dark-tokens.css"&gt;   &lt;!-- valgfritt --&gt;</code></pre>
+  </div>
+
+  <p style="margin-top:1.25rem">Mørkt tema er <strong>valgfritt</strong>. Lyst er standard. Aktiveres med <code>&lt;html data-theme="dark"&gt;</code>.</p>
+
+  <p>Full dokumentasjon:
+    <a href="DESIGN-SYSTEM.md">DESIGN-SYSTEM.md</a> ·
+    <a href="dark/DARK-THEME.md">DARK-THEME.md</a> ·
+    <a href="dark/preview.html">forhåndsvisning av mørkt tema</a>
+  </p>
+
+  <div class="warn">
+    <strong>Én regel som ofte brytes:</strong>
+    <p style="margin:.4rem 0 0">Ingen farge må være lik flaten den ligger på. Mørkegrønn er
+    <em>bakgrunnen</em> i mørkt tema, så en diagramserie eller logo i mørkegrønn forsvinner.
+    Bruk <code>--chart-1</code> til <code>--chart-4</code>, som bytter med temaet.</p>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  NoA Connect · Designsystem 2026 · Lime <code>#E4FB00</code> / Mørkegrønn <code>#243419</code> / Krem <code>#FDFEEA</code>
+</div></footer>
+
+<div id="toast">Kopiert</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+
+  /* ---- tema ---- */
+  function sync(){
+    var dark = root.dataset.theme === 'dark';
+    document.getElementById('b-dark').className  = 'pill' + (dark ? '' : ' sec');
+    document.getElementById('b-light').className = 'pill' + (dark ? ' sec' : '');
+    document.getElementById('logo').src = dark
+      ? 'assets/logo-wordmark-cream.svg'
+      : 'assets/logo-wordmark.svg';
+    try { localStorage.setItem('noa-guidelines-theme', root.dataset.theme); } catch(e){}
+    render();
+  }
+  function set(t){ root.dataset.theme = t; sync(); }
+  document.getElementById('b-dark').onclick  = function(){ set('dark'); };
+  document.getElementById('b-light').onclick = function(){ set('light'); };
+  try {
+    var saved = localStorage.getItem('noa-guidelines-theme');
+    if (saved === 'dark' || saved === 'light') root.dataset.theme = saved;
+  } catch(e){}
+
+  /* ---- kopier ---- */
+  var toast = document.getElementById('toast'), timer;
+  function copy(text){
+    var done = function(){
+      toast.textContent = text + ' kopiert';
+      toast.classList.add('on');
+      clearTimeout(timer);
+      timer = setTimeout(function(){ toast.classList.remove('on'); }, 1400);
+    };
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, done); }
+    else {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e){}
+      document.body.removeChild(ta); done();
+    }
+  }
+
+  /* ---- fargekortene bygges fra de faktiske tokenverdiene ---- */
+  var BRAND = [
+    ['--color-lime','Lime','Primæraksent: nøkkeltall, highlights, aktivt steg'],
+    ['--color-dark-green','Mørkegrønn','Tekst, CTA, mørke flater'],
+    ['--color-cream','Krem','Sidebakgrunn i lyst tema, tekst i mørkt'],
+    ['--color-sage','Sage','Dempet sekundærfarge'],
+    ['--color-peach','Fersken','Varm aksent'],
+  ];
+  var UI = [
+    ['--color-bg-card','Kortflate'],
+    ['--color-bg-secondary','Sekundær flate'],
+    ['--color-heading','Overskrift'],
+    ['--color-text-primary','Brødtekst'],
+    ['--color-text-muted','Dempet tekst'],
+    ['--color-border','Ramme'],
+    ['--color-link','Lenke'],
+    ['--color-negative','Negativ endring'],
+  ];
+  var CHART = [
+    ['--chart-1','Serie 1'],['--chart-2','Serie 2'],
+    ['--chart-3','Serie 3'],['--chart-4','Serie 4'],
+  ];
+
+  function val(token){
+    return getComputedStyle(root).getPropertyValue(token).trim();
+  }
+  function card(token, name, note){
+    var v = val(token);
+    var b = document.createElement('button');
+    b.className = 'sw';
+    b.type = 'button';
+    b.title = 'Klikk for å kopiere ' + v;
+    b.innerHTML =
+      '<span class="chip" style="background:' + v + '"></span>' +
+      '<span class="meta"><span class="nm">' + name + '</span>' +
+      '<div class="hx">' + v.toUpperCase() + '</div>' +
+      '<div class="tk">' + (note ? note : 'var(' + token + ')') + '</div></span>';
+    b.onclick = function(){ copy(v.toUpperCase()); };
+    return b;
+  }
+  function fill(id, list){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    list.forEach(function(row){ el.appendChild(card(row[0], row[1], row[2])); });
+  }
+  function render(){
+    fill('sw-brand', BRAND);
+    fill('sw-ui', UI);
+    fill('sw-chart', CHART);
+  }
+
+  sync();
+})();
+</script>
+</body>
+</html>
