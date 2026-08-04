@@ -115,6 +115,20 @@
   }
   blockquote p{margin:0}
 
+  /* ---- fontsnitt ---- */
+  .fontcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .fontcard{
+    border:1px solid var(--color-border);border-radius:var(--border-radius-md);
+    background:var(--color-bg-card);overflow:hidden;
+  }
+  .fc-sample{
+    font-size:64px;line-height:1;color:var(--color-heading);
+    padding:1.5rem 1rem;text-align:center;border-bottom:1px solid var(--color-border);
+  }
+  .fc-meta{padding:.7rem .85rem;font-size:12px;line-height:1.5}
+  .fc-meta code{word-break:break-all;color:var(--color-text-muted)}
+  .fc-meta a{color:var(--color-heading)}
+
   /* ---- logo ---- */
   .logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:1rem}
   .logobox{border:1px solid var(--color-border);border-radius:var(--border-radius-md);overflow:hidden}
@@ -250,11 +264,27 @@
 <!-- ============ TYPOGRAFI ============ -->
 <section id="typografi"><div class="wrap">
   <p class="label">Typografi</p>
-  <h2>Aptos Display til overskrifter, Aptos til alt annet</h2>
+  <h2>NoA Serif 2.0 er fonten vår</h2>
+  <p style="margin:.5rem 0 1.25rem;max-width:60ch">Én font til alt vi lager: overskrifter, brødtekst, tabeller, knapper og etiketter. Regular er standard, Bold til overskrifter og uthevinger. Logo-snittet er reservert wordmarket.</p>
 
-  <div class="demo">
-    <div style="font-family:var(--font-display);font-size:var(--font-size-3xl);color:var(--color-heading);line-height:1.2">Overskrift i Aptos Display</div>
-    <p style="margin:.75rem 0 0">Brødtekst i Aptos, 16px, linjeavstand 1,65. Etiketter, knapper, tabellceller og metadata bruker samme font — aldri display-fonten.</p>
+  <div class="fontcards">
+    <div class="fontcard">
+      <div class="fc-sample" style="font-family:var(--font-sans);font-weight:400">Aa</div>
+      <div class="fc-meta"><strong>Regular 400 — standard</strong><br><span class="muted">Brødtekst, UI, tabeller</span><br><code>fonts/NoaSerif2.0-Regular.otf</code><br><a href="fonts/NoaSerif2.0-Regular.otf" download>Last ned OTF</a></div>
+    </div>
+    <div class="fontcard">
+      <div class="fc-sample" style="font-family:var(--font-display);font-weight:700">Aa</div>
+      <div class="fc-meta"><strong>Bold 700</strong><br><span class="muted">Overskrifter, uthevinger</span><br><code>fonts/NoaSerif2.0-Bold.otf</code><br><a href="fonts/NoaSerif2.0-Bold.otf" download>Last ned OTF</a></div>
+    </div>
+    <div class="fontcard">
+      <div class="fc-sample" style="font-family:var(--font-logo)">Aa</div>
+      <div class="fc-meta"><strong>Logo</strong><br><span class="muted">Kun wordmark og logolockup — aldri brødtekst</span><br><code>fonts/NoaSerif2.0-Logo.otf</code><br><a href="fonts/NoaSerif2.0-Logo.otf" download>Last ned OTF</a></div>
+    </div>
+  </div>
+
+  <div class="demo" style="margin-top:1.25rem">
+    <div style="font-family:var(--font-display);font-weight:700;font-size:var(--font-size-3xl);color:var(--color-heading);line-height:1.2">Overskrift i NoA Serif 2.0 Bold</div>
+    <p style="margin:.75rem 0 0">Brødtekst i NoA Serif 2.0 Regular, 16px, linjeavstand 1,65. Etiketter, knapper, tabellceller og metadata bruker samme font i samme snitt.</p>
     <p class="muted" style="margin:.5rem 0 0;font-size:var(--font-size-sm)">Dempet støttetekst, 14px.</p>
   </div>
 
@@ -330,6 +360,8 @@
 <pre style="margin:0;overflow-x:auto"><code>&lt;link rel="stylesheet" href="design-tokens.css"&gt;
 &lt;link rel="stylesheet" href="dark/dark-tokens.css"&gt;   &lt;!-- valgfritt --&gt;</code></pre>
   </div>
+
+  <p style="margin-top:1.25rem"><strong>Fonten følger med tokens-filen.</strong> <code>design-tokens.css</code> laster NoA Serif 2.0 med <code>@font-face</code> og relative stier, så mappen <code>fonts/</code> må ligge ved siden av CSS-filen. Bruk <code>var(--font-sans)</code> til all tekst, <code>var(--font-display)</code> med <code>font-weight:700</code> til overskrifter, og <code>var(--font-logo)</code> bare til wordmarket.</p>
 
   <p style="margin-top:1.25rem">Mørkt tema er <strong>valgfritt</strong>. Lyst er standard. Aktiveres med <code>&lt;html data-theme="dark"&gt;</code>.</p>
 

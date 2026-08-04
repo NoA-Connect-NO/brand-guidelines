@@ -43,16 +43,28 @@ i malen, ikke et bilde.
 
 ## Typografi
 
+### Husfont: NoA Serif 2.0
+
+**NoA Serif 2.0 er vår font.** Den brukes til all tekst, i alle leveranser.
+Regular (400) er standardsnittet, Bold (700) til overskrifter og uthevinger.
+Logo-snittet er reservert wordmark og logolockup — aldri til brødtekst.
+
+Filene ligger i `fonts/` og lastes via `@font-face` i `design-tokens.css`:
+
+| Fil | Snitt | Token |
+|---|---|---|
+| `fonts/NoaSerif2.0-Regular.otf` | Regular 400 (standard) | `--font-sans` / `--font-base` |
+| `fonts/NoaSerif2.0-Bold.otf` | Bold 700 | `--font-display` med `font-weight:700` |
+| `fonts/NoaSerif2.0-Logo.otf` | Logo (kun wordmark) | `--font-logo` |
+
 ### Font-hierarki
 
 | Rolle | Font | Vekt |
 |---|---|---|
-| Overskrifter / display (H1–H3), "Connect"-wordmark | Aptos Display (serif-aktig bruk på wordmark) | 700 |
-| Brødtekst, UI-elementer, tabeller | Aptos / Inter | 400 / 500 |
-| Fallback serif | Georgia, serif | — |
-| Fallback sans | system-ui, sans-serif | — |
-
-**Viktig:** Aptos Display brukes til overskrifter og display-tekst. Alt annet — etiketter, knapper, tabellceller, metadata — bruker Aptos eller Inter som fallback.
+| Overskrifter / display (H1–H3) | NoA Serif 2.0 | 700 |
+| Brødtekst, UI-elementer, tabeller | NoA Serif 2.0 | 400 |
+| Wordmark / logolockup | NoA Serif 2.0 Logo | 400 |
+| Fallback | Aptos Display / Aptos, Georgia, serif | — |
 
 ### Størrelseshierarki
 
@@ -128,7 +140,7 @@ background: #E4FB00;
 color: #243419;
 border-radius: 6px;
 padding: 9px 20px;
-font-family: 'Aptos', system-ui, sans-serif;
+font-family: 'NoA Serif 2.0', Georgia, serif;
 font-weight: 500;
 
 /* Primær hover */
@@ -167,7 +179,7 @@ border-left: 3px solid #E4FB00;
 padding: 0.75rem 1rem;
 background: #FDFEEA;
 border-radius: 0 6px 6px 0;
-font-family: 'Aptos', system-ui, sans-serif;
+font-family: 'NoA Serif 2.0', Georgia, serif;
 ```
 
 ### Metrikk-kort
@@ -179,7 +191,7 @@ padding: 1rem;
 
 /* Etikett */
 font-size: 12px;
-font-family: 'Aptos', system-ui, sans-serif;
+font-family: 'NoA Serif 2.0', Georgia, serif;
 color: #545050;
 text-transform: uppercase;
 letter-spacing: 0.07em;
@@ -187,7 +199,7 @@ letter-spacing: 0.07em;
 /* Verdi */
 font-size: 28px;
 font-weight: 700;
-font-family: 'Aptos Display', Georgia, serif;
+font-family: 'NoA Serif 2.0', Georgia, serif;
 color: #243419;
 ```
 
@@ -195,7 +207,7 @@ color: #243419;
 
 ```css
 font-size: 11px;
-font-family: 'Aptos', system-ui, sans-serif;
+font-family: 'NoA Serif 2.0', Georgia, serif;
 font-weight: 700;
 letter-spacing: 0.1em;
 text-transform: uppercase;
@@ -212,7 +224,7 @@ background: #243419;
 color: #FDFEEA;
 border-radius: 12px;
 padding: 1.5rem;
-font-family: 'Aptos', system-ui, sans-serif;
+font-family: 'NoA Serif 2.0', Georgia, serif;
 ```
 
 ---
@@ -241,7 +253,8 @@ Rolig, analytisk og profesjonell. Unngå støyende farger, overdrevne gradienter
 | Fil | Bruk |
 |---|---|
 | `index.html` | Nettsiden. Palett, tokens, komponenter, logonedlasting |
-| `design-tokens.css` | CSS-variabler for lyst tema |
+| `design-tokens.css` | CSS-variabler for lyst tema + `@font-face` for husfonten |
+| `fonts/` | NoA Serif 2.0: Regular, Bold, Logo (.otf) |
 | `assets/logo-wordmark.svg` | Logo: wordmark, mørkegrønn |
 | `assets/logo-wordmark-cream.svg` | Logo: wordmark, krem — for mørk bakgrunn |
 | `assets/accent-arrow.svg` | Dekorativt ikon. **Ikke logoen**, skal ikke stå ved wordmarket |

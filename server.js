@@ -23,6 +23,11 @@ const TYPES = {
   // Markdown as text/plain so browsers show it instead of downloading it.
   ".md": "text/plain; charset=utf-8",
   ".mp4": "video/mp4",
+  // Fontene lastes med @font-face fra design-tokens.css.
+  ".otf": "font/otf",
+  ".ttf": "font/ttf",
+  ".woff": "font/woff",
+  ".woff2": "font/woff2",
 };
 
 function send(res, status, body, headers) {

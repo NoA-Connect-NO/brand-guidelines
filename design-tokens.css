@@ -5,6 +5,33 @@
    og komponenter for å sikre konsistent visuell identitet.
    ============================================================= */
 
+/* --- Husfonten: NoA Serif 2.0 -------------------------------
+   Tre snitt: Regular (400) og Bold (700) til all tekst, og et eget
+   Logo-snitt som KUN brukes til wordmark/logolockup.
+   url()-stiene er relative til denne filen, så fonts/ må ligge ved
+   siden av design-tokens.css. */
+@font-face {
+  font-family: 'NoA Serif 2.0';
+  src: url('fonts/NoaSerif2.0-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NoA Serif 2.0';
+  src: url('fonts/NoaSerif2.0-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NoA Serif 2.0 Logo';
+  src: url('fonts/NoaSerif2.0-Logo.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
 
   /* --- Farger: Primærpalett --- */
@@ -91,8 +118,11 @@
   --panel-deep-rule:       rgba(253, 254, 234, 0.14);
 
   /* --- Typografi --- */
-  --font-display: 'Aptos Display', 'Georgia', serif;  /* Overskrifter, wordmark */
-  --font-sans:    'Aptos', system-ui, sans-serif;      /* Brødtekst, UI-elementer */
+  /* NoA Serif 2.0 er husfonten og brukes til all tekst. Regular er standard. */
+  --font-display: 'NoA Serif 2.0', 'Aptos Display', Georgia, serif;  /* Overskrifter */
+  --font-sans:    'NoA Serif 2.0', 'Aptos', Georgia, serif;          /* Brødtekst, UI-elementer */
+  --font-logo:    'NoA Serif 2.0 Logo', 'NoA Serif 2.0', Georgia, serif;  /* Kun wordmark/logolockup */
+  --font-base:    var(--font-sans);   /* Alias: standardfonten */
 
   --font-weight-regular: 400;
   --font-weight-bold:    700;
