@@ -64,7 +64,7 @@ Filene ligger i `fonts/` og lastes via `@font-face` i `design-tokens.css`:
 | Overskrifter / display (H1–H3) | NoA Serif 2.0 | 700 |
 | Brødtekst, UI-elementer, tabeller | NoA Serif 2.0 | 400 |
 | Wordmark / logolockup | NoA Serif 2.0 Logo | 400 |
-| Fallback | Aptos Display / Aptos, Georgia, serif | — |
+| Fallback | Georgia, serif | — |
 
 ### Størrelseshierarki
 

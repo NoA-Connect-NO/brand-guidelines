@@ -119,8 +119,8 @@
 
   /* --- Typografi --- */
   /* NoA Serif 2.0 er husfonten og brukes til all tekst. Regular er standard. */
-  --font-display: 'NoA Serif 2.0', 'Aptos Display', Georgia, serif;  /* Overskrifter */
-  --font-sans:    'NoA Serif 2.0', 'Aptos', Georgia, serif;          /* Brødtekst, UI-elementer */
+  --font-display: 'NoA Serif 2.0', Georgia, serif;  /* Overskrifter */
+  --font-sans:    'NoA Serif 2.0', Georgia, serif;  /* Brødtekst, UI-elementer */
   --font-logo:    'NoA Serif 2.0 Logo', 'NoA Serif 2.0', Georgia, serif;  /* Kun wordmark/logolockup */
   --font-base:    var(--font-sans);   /* Alias: standardfonten */
 
